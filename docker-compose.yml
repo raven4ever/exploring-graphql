@@ -2,6 +2,10 @@ services:
   mongodb:
     image: mongo
     restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo/create-custom-user.js:/docker-entrypoint-initdb.d/create-custom-user.js
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
