@@ -672,6 +672,140 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "40_updates",
+					"item": [
+						{
+							"name": "update_teacher",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Update Joanna\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.data.UpdateTeacher.name).to.eql(\"Jess\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation UpdateTeacher($id: ID!, $name: String!, $age: Int!) {\r\n  UpdateTeacher(id: $id, name: $name, age: $age) {\r\n    id\r\n    name\r\n    age\r\n  }\r\n}\r\n",
+										"variables": "{\r\n   \"id\":\"{{teacher_joanna_id}}\",\r\n   \"name\":\"Jess\",\r\n   \"age\":45\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{running_url}}",
+									"host": [
+										"{{running_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update_student",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation CreateStudent($sports: [ID]!, $courses: [ID]!) {\r\n    \r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{running_url}}",
+									"host": [
+										"{{running_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update_course",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Update Painting\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.data.UpdateCourse.name).to.eql(\"Classical Painting\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation UpdateCourse($id: ID!, $name: String!, $description: String!, $teacher: ID!) {\r\n  UpdateCourse(id: $id, name: $name, description: $description, teacher: $teacher) {\r\n    id\r\n    name\r\n    description\r\n    teacher {\r\n      id\r\n      name\r\n    }\r\n  }\r\n}\r\n",
+										"variables": "{\r\n    \"id\":\"{{course_pain_id}}\",\r\n    \"name\":\"Classical Painting\",\r\n    \"description\":\"Nope!\",\r\n    \"teacher\": \"{{teacher_joanna_id}}\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{running_url}}",
+									"host": [
+										"{{running_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update_sport",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Update Skiing\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.data.UpdateSport.name).to.eql(\"Skating\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation UpdateSport($id: ID!, $name: String!, $description: String!) {\r\n  UpdateSport(id: $id, name: $name, description: $description) {\r\n    id\r\n    name\r\n    description\r\n  }\r\n}\r\n",
+										"variables": "{\r\n   \"id\":\"{{sport_skiing_id}}\",\r\n   \"name\":\"Skating\",\r\n   \"description\":\"Wintery stuff\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{running_url}}",
+									"host": [
+										"{{running_url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
